@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "typeRoots": ["./node_modules/@types"],
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "removeComments": true,
+        "module": "commonjs",
+        "declaration": true,
+        "target": "esnext",
+        "outDir": "./dist",
+        "incremental": true,
+        "sourceMap": true,
+        "baseUrl": "./"
+    }
+}

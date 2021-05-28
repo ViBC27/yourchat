@@ -1,0 +1,31 @@
+<div class="container-fluid" style="height: 100vh; background: linear-gradient(to right, #2193b0, #6dd5ed);">
+    <div class="row" style="height: 25vh;"></div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Yourchat</div>
+                <div class="card-body">
+                    <form [formGroup]="userData" (ngSubmit)="gotoChat()">
+                        <div class="form-row align-items-center">
+                            <div class="col-6">
+                                <label class="sr-only" for="Nickname">Nickname</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Nickname" placeholder="Nickname"
+                                        formControlName="nickname">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary btn-block mb-2">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
