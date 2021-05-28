@@ -19,14 +19,9 @@ server.listen(port, () => {
 });
 
 socketServer.on('connection', (socket: SocketType) => {
-
-    // TODO: Remove
-    console.log('Conectado!');
-
     socket.on('user', nickname => {
         socket.nickname = nickname;
-
-        socket.emit('Welcome', {
+        socket.emit('welcome', {
             message: `Welcome, ${socket.nickname}.`,
             nickname: socket.nickname,
             createdAt: new Date(),
@@ -42,7 +37,6 @@ socketServer.on('connection', (socket: SocketType) => {
     });
 
     socket.on('message', message => {
-        console.log(`${socket.nickname} > ${message}`);
         socket.broadcast.emit('message', {
             message: message.toString(),
             nickname: socket.nickname,

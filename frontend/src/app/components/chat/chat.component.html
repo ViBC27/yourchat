@@ -1,101 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>IChat</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yourchat</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
 
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet"> 
+</head>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />    
-
-    </head>
-    <body>
-        <div id="container">
-            <main class="justify-content-center">
-                <header>
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
-                    <div>
-                        <h2>Chat with Vincent Porter</h2>
-                        <h3>25 pessoas online</h3>
+<body>
+    <div id="container">
+        <main class="justify-content-center">
+            <header>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+                <div>
+                    <h2>{{ userData.nickname }}</h2>
+                    <h3>25 pessoas online</h3>
+                </div>
+            </header>
+            <ul id="chat">
+                <li class="me" *ngFor="let event of socketEvents">
+                    <div class="entete">
+                        <h2>{{ event.nickname }}</h2>
+                        <h3>{{ moment.format(event.createdAt) }}</h3>
+                        <span class="status blue"></span>
                     </div>
-                </header>
-                <ul id="chat">
-                    <li class="you">
-                        <div class="entete">
-                            <span class="status green"></span>
-                            <h2>Vincent</h2>
-                            <h3>10:12AM, Today</h3>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        </div>
-                    </li>
-                    <li class="me">
-                        <div class="entete">
-                            <h3>10:12AM, Today</h3>
-                            <h2>Vincent</h2>
-                            <span class="status blue"></span>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        </div>
-                    </li>
-                    <li class="me">
-                        <div class="entete">
-                            <h3>10:12AM, Today</h3>
-                            <h2>Vincent</h2>
-                            <span class="status blue"></span>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            OK
-                        </div>
-                    </li>
-                    <li class="you">
-                        <div class="entete">
-                            <span class="status green"></span>
-                            <h2>Vincent</h2>
-                            <h3>10:12AM, Today</h3>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        </div>
-                    </li>
-                    <li class="me">
-                        <div class="entete">
-                            <h3>10:12AM, Today</h3>
-                            <h2>Vincent</h2>
-                            <span class="status blue"></span>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        </div>
-                    </li>
-                    <li class="me">
-                        <div class="entete">
-                            <h3>10:12AM, Today</h3>
-                            <h2>Vincent</h2>
-                            <span class="status blue"></span>
-                        </div>
-                        <div class="triangle"></div>
-                        <div class="message">
-                            OK
-                        </div>
-                    </li>
-                </ul>
-                <footer>
-                    <textarea placeholder="Type your message"></textarea>
-                    <a href="#">Send</a>
-                </footer>
-            </main>
-        </div>
-    </body>
+                    <div class="triangle"></div>
+                    <div class="message">{{ event.message }}</div>
+                </li>
+            </ul>
+            <footer>
+                <form [formGroup]="userMessageData" (ngSubmit)="sendMessage()">
+                    <textarea id="message" placeholder="Type your message" formControlName="message"></textarea>
+                    <button type="submit" class="btn btn-primary btn-block mb-2">Send</button>
+                </form>
+            </footer>
+        </main>
+    </div>
+</body>
+
 </html>
