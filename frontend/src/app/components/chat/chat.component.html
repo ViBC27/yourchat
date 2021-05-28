@@ -21,14 +21,13 @@
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
                 <div>
                     <h2>{{ userData.nickname }}</h2>
-                    <h3>25 pessoas online</h3>
                 </div>
             </header>
             <ul id="chat">
                 <li class="me" *ngFor="let event of socketEvents">
                     <div class="entete">
-                        <h2>{{ event.nickname }}</h2>
-                        <h3>{{ moment.format(event.createdAt) }}</h3>
+                        <h2 style="padding-right: 8px;">{{ event.system ? 'System' : event.nickname }}</h2>
+                        <h3>{{ moment(event.createdAt).format('DD/MM h:mm:ss a') }}</h3>
                         <span class="status blue"></span>
                     </div>
                     <div class="triangle"></div>
